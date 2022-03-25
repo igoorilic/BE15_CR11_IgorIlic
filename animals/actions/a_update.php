@@ -25,7 +25,6 @@ if ($_POST) {
     $hobbies = $_POST['hobbies'];
     $breed = $_POST['breed'];
     $id = $_POST['animalId'];
-    //variable for upload pictures errors is initialised
     $uploadError = '';
 
    $picture = file_upload($_FILES['picture'], 'animal'); //maybe product //file_upload() called  

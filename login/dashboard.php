@@ -4,12 +4,10 @@ ini_set('display_errors', TRUE);
 
 session_start();
 require_once '../components/db_connect.php';
-// if session is not set this will redirect to login page
 if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
   header("Location: index.php");
   exit;
 }
-//if session user exist it shouldn't access dashboard.php
 if (isset($_SESSION["user"])) {
   header("Location: home.php");
   exit;
@@ -20,17 +18,16 @@ $status = 'adm';
 $sql = "SELECT * FROM users WHERE status != '$status'";
 $result = mysqli_query($connect, $sql);
 
-//this variable will hold the body for the table
 $tbody = '';
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
       $tbody .= "<tr>
-          <td><img class='img-thumbnail rounded-circle' src='../pictures/" . $row['picture'] . "' alt=" . $row['firstName'] . "></td>
-          <td>" . $row['firstName'] . " " . $row['lastName'] . "</td>
-          <td>" . $row['phoneNumber'] . "</td>
-          <td>" . $row['address'] . "</td>
-          <td>" . $row['email'] . "</td>
-          <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
+          <td class='text-center'><img class='img-thumbnail rounded-circle' src='../pictures/" . $row['picture'] . "' alt=" . $row['firstName'] . "></td>
+          <td class='text-center'>" . $row['firstName'] . " " . $row['lastName'] . "</td>
+          <td class='text-center'>" . $row['phoneNumber'] . "</td>
+          <td class='text-center'>" . $row['address'] . "</td>
+          <td class='text-center'>" . $row['email'] . "</td>
+          <td class='text-center'><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
        </tr>";
   }
 } else {
@@ -81,7 +78,7 @@ mysqli_close($connect);
           </div>
           <div class="col-8 mt-2">
               <p class='h2'>Users</p>
-              <table class='table table-striped'>
+              <table class='table table-striped '>
                   <thead class='table-success'>
                       <tr>
                           <th>Picture</th>

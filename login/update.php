@@ -6,23 +6,19 @@ session_start();
 require_once '../components/db_connect.php';
 require_once '../components/file_upload.php';
 
-// if session is not set this will redirect to login page
 if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
   header("Location: index.php");
   exit;
 }
 
 $backBtn = '';
-//if it is a user it will create a back button to home.php
 if (isset($_SESSION["user"])) {
   $backBtn = "home.php";
 }
-//if it is a adm it will create a back button to dashboard.php
 if (isset($_SESSION["adm"])) {
   $backBtn = "dashboard.php";
 }
 
-//fetch and populate form
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   $sql = "SELECT * FROM users WHERE id = {$id}";
@@ -38,7 +34,6 @@ if (isset($_GET['id'])) {
   }
 }
 
-//update
 $class = 'd-none';
 if (isset($_POST["submit"])) {
   $fName = $_POST['firstName'];
@@ -47,9 +42,8 @@ if (isset($_POST["submit"])) {
   $email = $_POST['email'];
   $phoneNumber = $_POST['phoneNumber'];
   $id = $_POST['id'];
-  //variable for upload pictures errors is initialized
   $uploadError = '';
-  $pictureArray = file_upload($_FILES['picture']); //file_upload() called
+  $pictureArray = file_upload($_FILES['picture']);
   $picture = $pictureArray->fileName;
   if ($pictureArray->error === 0) {
       ($_POST["picture"] == "avatar.png") ?: unlink("pictures/{$_POST["picture"]}");

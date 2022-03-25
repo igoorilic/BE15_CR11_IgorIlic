@@ -7,8 +7,7 @@ function file_upload($picture, $source = 'user')
   if (isset($_SESSION['adm'])) {
     $result->fileName = 'animal.jpeg';
 }
-  $result->error = 1; //it could also be a boolean true/false
-  //collect data from object $picture
+  $result->error = 1; 
   $fileName = $picture["name"];
   $fileTmpName = $picture["tmp_name"];
   $fileError = $picture["error"];
@@ -21,10 +20,9 @@ function file_upload($picture, $source = 'user')
   } else {
       if (in_array($fileExtension, $filesAllowed)) {
           if ($fileError === 0) {
-              if ($fileSize < 500000) { //500kb this number is in bytes
-                  //it gives a file name based microseconds
-                  $fileNewName = uniqid('') . "." . $fileExtension; // 1233343434.jpg i.e
-                  if ($source == 'animal') { //maybe product not animal
+              if ($fileSize < 500000) { 
+                  $fileNewName = uniqid('') . "." . $fileExtension; 
+                  if ($source == 'animal') { 
                     $destination = "../../pictures/$fileNewName";
                 } elseif ($source == 'user') {
                     $destination = "pictures/$fileNewName" ;

@@ -14,7 +14,7 @@ if (! isset($_SESSION['adm']) && !isset($_SESSION['user' ])) {
 
 $sql = "SELECT * FROM animals";
 $result = mysqli_query($connect, $sql);
-$tbody = ''; //this variable will hold the body for the table 
+$tbody = '';
 if (mysqli_num_rows($result)  > 0) {
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
       $tbody .= "<tr>

@@ -2,12 +2,12 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', TRUE);
 
-session_start(); // start a new session or continues the previous
+session_start();
 if (isset($_SESSION['user']) != "") {
-  header("Location: home.php"); // redirects to home.php
+  header("Location: home.php"); 
 }
 if (isset($_SESSION['adm']) != "") {
-  header("Location: dashboard.php"); // redirects to home.php
+  header("Location: dashboard.php"); 
 }
 require_once '../components/db_connect.php';
 require_once '../components/file_upload.php';
@@ -43,7 +43,6 @@ if (isset($_POST['btn-signup'])) {
   $uploadError = '';
   $picture = file_upload($_FILES['picture']);
 
-  // basic name validation
   if (empty($fname) || empty($lname)) {
       $error = true;
       $fnameError = "Please enter your full name and surname";
@@ -55,12 +54,10 @@ if (isset($_POST['btn-signup'])) {
       $fnameError = "Name and surname must contain only letters and no spaces.";
   }
 
-  // basic email validation
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $error = true;
       $emailError = "Please enter valid email address.";
   } else {
-      // checks whether the email exists or not
       $query = "SELECT email FROM users WHERE email='$email'";
       $result = mysqli_query($connect, $query);
       $count = mysqli_num_rows($result);
@@ -79,7 +76,6 @@ if (isset($_POST['btn-signup'])) {
     $error = true;
     $dateError = "Please enter your date of birth.";
 }
-  // password validation
   if (empty($pass)) {
       $error = true;
       $passError = "Please enter password.";
@@ -88,9 +84,7 @@ if (isset($_POST['btn-signup'])) {
       $passError = "Password must have at least 6 characters.";
   }
 
-  // password hashing for security
   $password = hash('sha256', $pass);
-  // if there's no error, continue to signup
   if (!$error) {
 
       $query = "INSERT INTO users(firstName, lastName, email, password, phoneNumber, address, picture)

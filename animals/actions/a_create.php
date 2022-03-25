@@ -22,8 +22,7 @@ if ($_POST) {
    $hobbies = $_POST['hobbies'];
    $breed = $_POST['breed'];
    $uploadError = '';
-   //this function exists in the service file upload.
-   $picture = file_upload($_FILES['picture'], 'animals'); //maybe product not animals 
+   $picture = file_upload($_FILES['picture'], 'animals'); 
    
    $sql = "INSERT INTO animals (location, description, size, age, hobbies, breed, picture) VALUES ('$location', '$description', $size, $age, '$hobbies', '$breed', '$picture->fileName')";
 
