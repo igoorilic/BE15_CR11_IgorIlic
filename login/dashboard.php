@@ -15,6 +15,7 @@ if (isset($_SESSION["user"])) {
 
 $id = $_SESSION['adm'];
 $status = 'adm';
+// change query to $id?
 $sql = "SELECT * FROM users WHERE status != '$status'";
 $result = mysqli_query($connect, $sql);
 

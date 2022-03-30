@@ -3,7 +3,22 @@
    <head>
        <meta charset="UTF-8">
        <title>Error</title>
-       <?php require_once '../components/boot.php'?>    
+       <?php 
+       error_reporting(E_ALL); 
+       ini_set('display_errors', TRUE);
+       
+       session_start();
+       require_once '../components/db_connect.php';
+       
+       if (isset($_SESSION['user']) != "") {
+         header( "Location: ../home.php");
+         exit;
+       }
+       
+       if (!isset ($_SESSION['adm']) && !isset($_SESSION['user'])) {
+         header( "Location: ../index.php");
+         exit;
+       }?>    
    </head>
    <body>
        <div class="container">  

@@ -3,6 +3,15 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 
 session_start();
+require_once '../components/db_connect.php';
+if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
+  header("Location: index.php");
+  exit;
+}
+if (isset($_SESSION["user"])) {
+  header("Location: home.php");
+  exit;
+}
 require_once "../components/db_connect.php";
 
 if ($_GET['adoptionId']){

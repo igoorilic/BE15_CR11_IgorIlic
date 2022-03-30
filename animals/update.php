@@ -70,10 +70,10 @@ if ($_GET['id']) {
                        <td><input class="form-control" type="text"  name="description" placeholder ="Description" value="<?php echo $description ?>"  /></td>
                    </tr>                   <tr>
                        <th>Size</th>
-                       <td><input class="form-control" type="number"  name="size" placeholder ="Size" value="<?php echo $size ?>"  /></td>
+                       <td><input class="form-control" type="text"  name="size" placeholder ="Size" value="<?php echo $size ?>"  /></td>
                    </tr>                   <tr>
                        <th>Age</th>
-                       <td><input class="form-control" type="text"  name="age" placeholder ="Age" value="<?php echo $age ?>"  /></td>
+                       <td><input class="form-control" type="number"  name="age" placeholder ="Age" value="<?php echo $age ?>"  /></td>
                    </tr>                   <tr>
                        <th>Hobbies</th>
                        <td><input class="form-control" type="text"  name="hobbies" placeholder ="Hobbies" value="<?php echo $hobbies ?>"  /></td>
